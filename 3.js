@@ -13,28 +13,21 @@ function GetGender(gender) {
 function getDayOfWeek(dayNumber) {
     switch (dayNumber) {
         case 1:
-            alert("Понедельник");
-            break;
+            return "Понедельник";
         case 2:
-            alert("Вторник");
-            break;
+            return "Вторник";
         case 3:
-            alert("Среда");
-            break;
+            return "Среда";
         case 4:
-            alert("Четверг");
-            break;
+            return "Четверг";
         case 5:
-            alert("Пятница");
-            break;
+            return "Пятница";
         case 6:
-            alert("Суббота");
-            break;
+            return "Суббота";
         case 7:
-            alert("Воскресенье");
-            break;
+            return "Воскресенье";
         default:
-            alert("Некорректное число. Введите от 1 до 7.");
+            return "Некорректный номер дня недели";
     }
 }
 

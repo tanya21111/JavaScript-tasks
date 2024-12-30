@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border=1>
+        <tr>
+            <td>Услуга</td>
+            <td>Цена за ед.</td>
+            <td>Количество</td>
+            <td>Итого</td>
+        </tr>
+        <tr>
+            <td>Черно-белая печать (лист)</td>
+            <td id="bwPrint"></td>
+            <td>
+                <label for="bwPrintQty" class="sr-only">Количество</label>
+                <input type="number" id="bwPrintQty" min="0" value="0" placeholder="Введите количество" title="Черно-белая печать">
+            </td>
+            <td id="sum0">0</td>
+        </tr>
+        <tr>
+            <td>Черно-белая копия (лист)</td>
+            <td id="bwCopy"></td>
+            <td>
+                <label for="bwCopyQty" class="sr-only">Количество</label>
+                <input type="number" id="bwCopyQty" min="0" value="0" placeholder="Введите количество" title="Черно-белая копия">
+            </td>
+            <td id="sum1">0</td>
+        </tr>
+        <tr>
+            <td>Цветная печать (лист)</td>
+            <td id="ColorPrint"></td>
+            <td>
+                <label for="colorPrintQty" class="sr-only">Количество</label>
+                <input type="number" id="colorPrintQty" min="0" value="0" placeholder="Введите количество" title="Цветная печать">
+            </td>
+            <td id="sum2">0</td>
+        </tr>
+        <tr>
+            <td>Цветная копия (лист)</td>
+            <td id="ColorCopy"></td>
+            <td>
+                <label for="colorCopyQty" class="sr-only">Количество</label>
+                <input type="number" id="colorCopyQty" min="0" value="0" placeholder="Введите количество" title="Цветная копия">
+            </td>
+            <td id="sum3">0</td>
+        </tr>
+        <tr>
+            <td>Фото 30х40</td>
+            <td id="photo3040"></td>
+            <td>
+                <label for="photo3040Qty" class="sr-only">Количество</label>
+                <input type="number" id="photo3040Qty" min="0" value="0" placeholder="Введите количество" title="Фото 30х40">
+            </td>
+            <td id="sum4">0</td>
+        </tr>
+        <tr>
+            <td>Фото 50х60</td>
+            <td id="photo5060"></td>
+            <td>
+                <label for="photo5060Qty" class="sr-only">Количество</label>
+                <input type="number" id="photo5060Qty" min="0" value="0" placeholder="Введите количество" title="Фото 50х60">
+            </td>
+            <td id="sum5">0</td>
+        </tr>
+        <tr>
+            <td colspan="3">ИТОГО</td>
+            <td id="itogo">0</td>
+        </tr>
+    </table>
+</body>
+<script>
+    let price = {
+        bwPrint: 20,
+        bwCopy: 15,
+        colorPrint: 50,
+        colorCopy: 40,
+        photo3040: 60,
+        photo5060: 100,
+    };
+    let elemsQ = document.querySelectorAll("input[type='number']");
+    let priceValues = Object.values(price);
+    let table = document.querySelector("table");
+    
+    priceValues.forEach(function(elem, index) {
+        table.rows[index + 1].cells[1].innerHTML = elem;
+    });
+    
+    elemsQ.forEach((elem, i) => {
+        elem.oninput = function() {
+            document.getElementById(`sum${i}`).innerHTML = priceValues[i] * this.value;
+            itogo();
+        };
+    });
+    
+    function itogo() {
+        let sums = Array.from(document.querySelectorAll("[id^='sum']")); 
+        let summ = sums.reduce((sum, elem) => sum + +elem.innerHTML, 0);
+        document.querySelector("#itogo").innerHTML = summ;
+    }
+</script>
+</html>
